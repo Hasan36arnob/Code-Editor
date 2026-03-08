@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-
+//this is the feature item component
 const FeatureItem = ({ children }: { children: React.ReactNode }) => (
   <div className="flex items-start gap-3 group">
     <div className="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:border-blue-500/40 group-hover:bg-blue-500/20 transition-colors">
