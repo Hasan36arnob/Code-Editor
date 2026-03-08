@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Id } from "../../../../convex/_generated/dataModel";
 
 import { UserResource } from "@clerk/types";
-
+//this is the profile header component
 interface ProfileHeaderProps {
   userStats: {
     totalExecutions: number;
