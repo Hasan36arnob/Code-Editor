@@ -10,6 +10,8 @@ export default defineSchema({
     proSince: v.optional(v.number()),
     lemonSqueezyCustomerId: v.optional(v.string()),
     lemonSqueezyOrderId: v.optional(v.string()),
+    stripeCustomerId: v.optional(v.string()),
+    stripeSessionId: v.optional(v.string()),
   }).index("by_user_id", ["userId"]),
 
   codeExecutions: defineTable({

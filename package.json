@@ -20,7 +20,8 @@
     "react-hot-toast": "^2.4.1",
     "react-syntax-highlighter": "^15.6.1",
     "svix": "^1.42.0",
-    "zustand": "^5.0.1"
+    "zustand": "^5.0.1",
+    "stripe": "^14.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

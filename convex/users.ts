@@ -1,6 +1,18 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
+export const getUserByClerkId = query({
+  args: { userId: v.string() },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_user_id")
+      .filter((q) => q.eq(q.field("userId"), args.userId))
+      .first();
+    return user;
+  },
+});
+
 export const syncUser = mutation({
   args: {
     userId: v.string(),
@@ -62,6 +74,32 @@ export const upgradeToPro = mutation({
       proSince: Date.now(),
       lemonSqueezyCustomerId: args.lemonSqueezyCustomerId,
       lemonSqueezyOrderId: args.lemonSqueezyOrderId,
+    });
+
+    return { success: true };
+  },
+});
+
+export const upgradeToProByClerkId = mutation({
+  args: {
+    userId: v.string(),
+    stripeCustomerId: v.string(),
+    stripeSessionId: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const user = await ctx.db
+      .query("users")
+      .withIndex("by_user_id")
+      .filter((q) => q.eq(q.field("userId"), args.userId))
+      .first();
+
+    if (!user) throw new Error("User not found");
+
+    await ctx.db.patch(user._id, {
+      isPro: true,
+      proSince: Date.now(),
+      stripeCustomerId: args.stripeCustomerId,
+      stripeSessionId: args.stripeSessionId,
     });
 
     return { success: true };
