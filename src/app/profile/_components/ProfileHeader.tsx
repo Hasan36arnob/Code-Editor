@@ -29,10 +29,11 @@ interface ProfileHeaderProps {
   };
   user: UserResource;
 }
-
+//this is the profile header component
 function ProfileHeader({ userStats, userData, user }: ProfileHeaderProps) {
   const starredSnippets = useQuery(api.snippets.getStarredSnippets);
   const STATS = [
+    //this is the stats cards
     {
       label: "Code Executions",
       value: userStats?.totalExecutions ?? 0,
